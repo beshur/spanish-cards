@@ -6,6 +6,7 @@ import futuroEstiloIndirecto from './futuro-estilo-indirecto';
 import condicionalSalud from './condicional-salud';
 import imperativo from './imperativo';
 import refranes from './refranes';
+import estiloIndirectoPasados from './estilo-indirecto-pasados';
 
 /**
  * All available topics.
@@ -16,6 +17,7 @@ export const topics: Topic[] = [
 	presentPerfect,
 	pasadosIrregulares,
 	futuroEstiloIndirecto,
+	estiloIndirectoPasados,
 	condicionalSalud,
 	imperativo,
 	refranes
