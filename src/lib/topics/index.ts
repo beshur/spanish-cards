@@ -7,6 +7,10 @@ import condicionalSalud from './condicional-salud';
 import imperativo from './imperativo';
 import refranes from './refranes';
 import estiloIndirectoPasados from './estilo-indirecto-pasados';
+import preposicionDe from './preposicion-de';
+import porVsPara from './por-vs-para';
+import preposicionesEsenciales from './preposiciones-esenciales';
+import trampasPreposicionales from './trampas-preposicionales';
 
 /**
  * All available topics.
@@ -20,7 +24,11 @@ export const topics: Topic[] = [
 	estiloIndirectoPasados,
 	condicionalSalud,
 	imperativo,
-	refranes
+	refranes,
+	preposicionDe,
+	porVsPara,
+	preposicionesEsenciales,
+	trampasPreposicionales
 ];
 
 export function getTopicById(id: string): Topic | undefined {
