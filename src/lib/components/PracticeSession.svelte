@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import type { Card, Topic, SessionStats } from '$lib/types';
 	import FlashCard from './FlashCard.svelte';
 	import ResultCard from './ResultCard.svelte';
@@ -15,16 +16,18 @@
 	type Phase = 'practice' | 'result' | 'summary';
 
 	let phase: Phase = $state('practice');
-	let shuffledCards: Card[] = $state(shuffle(topic.cards));
+	let shuffledCards: Card[] = $state(untrack(() => shuffle(topic.cards)));
 	let currentIndex = $state(0);
 	let lastAnswer = $state('');
 	let lastCorrect = $state(false);
-	let stats: SessionStats = $state({
-		total: shuffledCards.length,
-		correct: 0,
-		incorrect: 0,
-		skipped: 0
-	});
+	let stats: SessionStats = $state(
+		untrack(() => ({
+			total: shuffledCards.length,
+			correct: 0,
+			incorrect: 0,
+			skipped: 0
+		}))
+	);
 
 	function shuffle<T>(arr: T[]): T[] {
 		const copy = [...arr];
