@@ -1,7 +1,9 @@
 <script lang="ts">
-	import type { Topic } from '$lib/types';
+	import type { Card, Topic } from '$lib/types';
 	import { examCategories } from '$lib/exam';
 	import PracticeSession from '$lib/components/PracticeSession.svelte';
+
+	const EXAM_SIZE = 50;
 
 	let activeTopic: Topic | null = $state(null);
 
@@ -11,6 +13,36 @@
 
 	function exitPractice() {
 		activeTopic = null;
+	}
+
+	function shuffle<T>(arr: T[]): T[] {
+		const copy = [...arr];
+		for (let i = copy.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[copy[i], copy[j]] = [copy[j], copy[i]];
+		}
+		return copy;
+	}
+
+	function startExamMode() {
+		const allCards: Card[] = [];
+		const seen = new Set<Topic>();
+		for (const cat of examCategories) {
+			for (const item of cat.topics) {
+				if (item.topic && !seen.has(item.topic)) {
+					seen.add(item.topic);
+					allCards.push(...item.topic.cards);
+				}
+			}
+		}
+		const picked = shuffle(allCards).slice(0, Math.min(EXAM_SIZE, allCards.length));
+		activeTopic = {
+			id: `exam-mode-${Date.now()}`,
+			name: `Exam Mode — ${picked.length} preguntas`,
+			description: 'Random questions across all B1 exam-prep topics.',
+			icon: '🎓',
+			cards: picked
+		};
 	}
 
 	const totals = examCategories.map((c) => ({
@@ -23,6 +55,20 @@
 		(acc, c) => ({ ready: acc.ready + c.ready, total: acc.total + c.total }),
 		{ ready: 0, total: 0 }
 	);
+
+	const totalCards = $derived(() => {
+		const seen = new Set<Topic>();
+		let count = 0;
+		for (const cat of examCategories) {
+			for (const item of cat.topics) {
+				if (item.topic && !seen.has(item.topic)) {
+					seen.add(item.topic);
+					count += item.topic.cards.length;
+				}
+			}
+		}
+		return count;
+	});
 </script>
 
 <svelte:head>
@@ -39,6 +85,20 @@
 		<p class="progress-line">
 			{overall.ready} of {overall.total} topics ready
 		</p>
+	</div>
+
+	<div class="exam-mode-card">
+		<div class="exam-mode-info">
+			<span class="exam-mode-icon">🎓</span>
+			<div>
+				<h2 class="exam-mode-title">Exam Mode</h2>
+				<p class="exam-mode-desc">
+					{EXAM_SIZE} random questions drawn from the {totalCards()} cards across all ready
+					topics — same mix you’ll face in the final.
+				</p>
+			</div>
+		</div>
+		<button class="exam-mode-btn" onclick={startExamMode}>Start exam →</button>
 	</div>
 
 	<div class="categories">
@@ -106,6 +166,64 @@
 		color: var(--accent);
 		font-weight: 600;
 		margin: 0;
+	}
+
+	.exam-mode-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1.1rem 1.2rem;
+		margin-bottom: 1.5rem;
+		border: 2px solid var(--accent);
+		border-radius: 1rem;
+		background: var(--accent-bg);
+	}
+
+	.exam-mode-info {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		flex: 1;
+		min-width: 0;
+	}
+
+	.exam-mode-icon {
+		font-size: 2rem;
+		line-height: 1;
+	}
+
+	.exam-mode-title {
+		font-size: 1.05rem;
+		font-weight: 700;
+		margin: 0;
+		color: var(--text);
+	}
+
+	.exam-mode-desc {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		margin: 0.15rem 0 0;
+		line-height: 1.4;
+	}
+
+	.exam-mode-btn {
+		font-family: inherit;
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: white;
+		background: var(--accent);
+		border: none;
+		border-radius: 0.6rem;
+		padding: 0.65rem 1.1rem;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.exam-mode-btn:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px var(--accent-glow);
 	}
 
 	.categories {
