@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import './styles.css';
 
 	let { children } = $props();
 
 	const navLinks = [
-		{ href: '/', label: 'Practice' },
-		{ href: '/exam', label: 'B1 Exam' }
+		{ href: `${base}/`, label: 'Practice' },
+		{ href: `${base}/exam`, label: 'B1 Exam' }
 	];
 
 	function isActive(href: string, current: string): boolean {
-		if (href === '/') return current === '/';
+		const home = `${base}/`;
+		if (href === home) return current === home || current === base;
 		return current === href || current.startsWith(href + '/');
 	}
 </script>
@@ -29,7 +31,7 @@
 <div class="shell">
 	<header class="app-header">
 		<div class="header-content">
-			<a class="logo" href="/">
+			<a class="logo" href="{base}/">
 				<span class="logo-icon">🇪🇸</span>
 				Spanish Cards
 			</a>
