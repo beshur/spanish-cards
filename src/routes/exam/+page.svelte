@@ -94,7 +94,7 @@
 				<h2 class="exam-mode-title">Exam Mode</h2>
 				<p class="exam-mode-desc">
 					{EXAM_SIZE} random questions drawn from the {totalCards()} cards across all ready
-					topics — same mix you’ll face in the final.
+					topics.
 				</p>
 			</div>
 		</div>
