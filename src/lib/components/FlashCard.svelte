@@ -40,11 +40,13 @@
 	}
 
 	function handleFocus() {
-		// On mobile, the virtual keyboard takes ~half the screen and the browser's
-		// default auto-scroll only ensures the input itself is visible — that can hide
-		// the top of the sentence. Scroll to the sticky progress bar so it pins at top
-		// and the question card sits right below it. Wait for the keyboard to settle
-		// first or iOS's own scroll restoration fights ours.
+		// Only re-anchor on mobile: the virtual keyboard takes ~half the screen and the
+		// browser's default auto-scroll can hide the top of the sentence. On desktop,
+		// there's no keyboard and forcing a scroll is jarring.
+		if (window.innerWidth >= 768) return;
+		// Scroll to the sticky progress bar so it pins at top and the question card
+		// sits right below it. Wait for the keyboard to settle first or iOS's own
+		// scroll restoration fights ours.
 		setTimeout(() => {
 			const target = document.querySelector('.progress-container') ?? cardEl;
 			target?.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -60,9 +60,15 @@
 
 <style>
 	.shell {
-		min-height: 200vh;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+	}
+
+	@media (max-width: 767px) {
+		.shell {
+			min-height: 200vh;
+		}
 	}
 
 	.app-header {

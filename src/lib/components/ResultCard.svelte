@@ -18,9 +18,10 @@
 		// preventScroll: tall (incorrect) result cards otherwise scroll the page
 		// down to surface the button, pushing the result text off-screen.
 		setTimeout(() => nextBtn?.focus({ preventScroll: true }), 50);
-		// Wait for the mobile keyboard to fully close before anchoring — iOS otherwise
-		// restores its own scroll position and the card drifts up. Scroll to the sticky
-		// progress bar so it pins at top with the result card right below.
+		// Mobile only: wait for the keyboard to fully close before anchoring — iOS
+		// otherwise restores its own scroll position and the card drifts up. On desktop
+		// there's no keyboard and forcing a scroll is jarring.
+		if (window.innerWidth >= 768) return;
 		setTimeout(() => {
 			const target = document.querySelector('.progress-container') ?? cardEl;
 			target?.scrollIntoView({ block: 'start' });
