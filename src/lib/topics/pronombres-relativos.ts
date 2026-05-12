@@ -22,11 +22,11 @@ const pronombresRelativos: Topic = {
 			hint: 'subjuntivo — unknown antecedent'
 		},
 		{
-			sentence: 'Hay pocos bares que ___ buenas tapas en este barrio. (tener)',
-			answer: 'tengan',
-			translation: 'There are few bars that have good tapas in this neighborhood.',
+			sentence: 'No hay ningún bar que ___ buenas tapas en este barrio. (tener)',
+			answer: 'tenga',
+			translation: 'There is no bar that has good tapas in this neighborhood.',
 			verb: 'tener',
-			hint: 'subjuntivo — scarce antecedent'
+			hint: 'subjuntivo — negated antecedent'
 		},
 		{
 			sentence: 'Cómprate un coche barato pero que ___ seguro. (ser)',

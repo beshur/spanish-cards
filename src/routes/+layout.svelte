@@ -6,15 +6,20 @@
 
 	let { children } = $props();
 
-	const navLinks = [
+	const navLinks: { href: string; label: string; aliases?: string[] }[] = [
 		{ href: `${base}/`, label: 'Practice' },
-		{ href: `${base}/exam`, label: 'B1 Exam' }
+		{
+			href: `${base}/exam`,
+			label: 'Exam',
+			aliases: [`${base}/b1-exam`, `${base}/a2-exam`]
+		}
 	];
 
-	function isActive(href: string, current: string): boolean {
+	function isActive(link: { href: string; aliases?: string[] }, current: string): boolean {
 		const home = `${base}/`;
-		if (href === home) return current === home || current === base;
-		return current === href || current.startsWith(href + '/');
+		if (link.href === home) return current === home || current === base;
+		if (current === link.href || current.startsWith(link.href + '/')) return true;
+		return (link.aliases ?? []).some((a) => current === a || current.startsWith(a + '/'));
 	}
 </script>
 
@@ -40,7 +45,7 @@
 					<a
 						href={link.href}
 						class="nav-link"
-						class:active={isActive(link.href, $page.url.pathname)}
+						class:active={isActive(link, $page.url.pathname)}
 					>
 						{link.label}
 					</a>

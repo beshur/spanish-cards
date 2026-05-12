@@ -81,15 +81,6 @@ const condicionalSalud: Topic = {
 		},
 		{
 			sentence:
-				'No ___ qué responder a esa pregunta tan complicada del examen oral. (saber)',
-			answer: 'sabría',
-			translation:
-				"I wouldn't know what to answer to such a complicated question on the oral exam.",
-			verb: 'saber',
-			hint: 'yo form of condicional — irregular stem: sabr-'
-		},
-		{
-			sentence:
 				'Si tuviéramos mucha hambre después del gimnasio, ___ unos bocadillos de jamón. (hacer)',
 			answer: 'haríamos',
 			translation:
