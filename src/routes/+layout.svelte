@@ -60,7 +60,7 @@
 
 <style>
 	.shell {
-		min-height: 100vh;
+		min-height: 200vh;
 		display: flex;
 		flex-direction: column;
 	}
