@@ -12,7 +12,7 @@
 </div>
 
 <div class="levels">
-	<a class="level-card ready" href="{base}/b1-exam">
+	<a class="level-card ready" href="{base}/exam/b1">
 		<span class="level-icon">🎓</span>
 		<div class="level-body">
 			<h2 class="level-title">B1</h2>
