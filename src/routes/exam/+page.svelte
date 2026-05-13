@@ -23,14 +23,16 @@
 		<span class="level-cta">Start →</span>
 	</a>
 
-	<span class="level-card stub" title="Coming soon">
+	<a class="level-card ready" href="{base}/exam/a2">
 		<span class="level-icon">📚</span>
 		<div class="level-body">
 			<h2 class="level-title">A2</h2>
-			<p class="level-desc">Elementary exam — coming soon.</p>
+			<p class="level-desc">
+				Elementary exam — pretérito indefinido, ser/estar, pronouns, basic reported speech.
+			</p>
 		</div>
-		<span class="level-cta">soon</span>
-	</span>
+		<span class="level-cta">Start →</span>
+	</a>
 </div>
 
 <style>
@@ -83,12 +85,6 @@
 		box-shadow: 0 6px 18px var(--accent-glow);
 	}
 
-	.level-card.stub {
-		opacity: 0.55;
-		cursor: not-allowed;
-		border-style: dashed;
-	}
-
 	.level-icon {
 		font-size: 2rem;
 		line-height: 1;
@@ -119,7 +115,4 @@
 		white-space: nowrap;
 	}
 
-	.level-card.stub .level-cta {
-		color: var(--text-secondary);
-	}
 </style>
