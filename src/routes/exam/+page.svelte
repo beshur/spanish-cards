@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { base } from '$app/paths';
+	import SeoHead from '$lib/components/SeoHead.svelte';
 </script>
 
-<svelte:head>
-	<title>Exam Prep — Spanish Cards</title>
-</svelte:head>
+<SeoHead
+	title="Spanish Exam Prep — A2 & B1"
+	description="Pick your CEFR level and drill the syllabus topics: pretérito indefinido, perfecto, subjuntivo, reported speech, vocabulary and more."
+	pathname={$page.url.pathname}
+/>
 
 <div class="welcome">
 	<h1 class="title">Exam Prep</h1>
