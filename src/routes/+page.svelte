@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { Topic } from '$lib/types';
 	import { topicGroups, type TopicGroup } from '$lib/topic-groups';
 	import PracticeSession from '$lib/components/PracticeSession.svelte';
+	import SeoHead from '$lib/components/SeoHead.svelte';
 
 	const groups: TopicGroup[] = topicGroups;
 	let activeTopic: Topic | null = $state(null);
@@ -15,9 +17,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Spanish Cards — Practice Your Spanish</title>
-</svelte:head>
+<SeoHead
+	title="Practice Spanish Grammar & Vocabulary"
+	description="Fill-in-the-blank flashcards covering Spanish tenses, syntax, mood, pragmatics and themed vocabulary — grouped by topic and ready for A2 or B1 exam prep."
+	pathname={$page.url.pathname}
+/>
 
 {#if !activeTopic}
 	<div class="welcome">

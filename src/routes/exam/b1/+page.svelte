@@ -1,11 +1,15 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { examCategories } from '$lib/exam';
 	import ExamLanding from '$lib/components/ExamLanding.svelte';
+	import SeoHead from '$lib/components/SeoHead.svelte';
 </script>
 
-<svelte:head>
-	<title>B1 Exam Prep — Spanish Cards</title>
-</svelte:head>
+<SeoHead
+	title="B1 Spanish Exam Prep"
+	description="Intermediate B1 flashcards: conditional, subjuntivo, relative clauses, reported speech, passive voice and themed vocabulary."
+	pathname={$page.url.pathname}
+/>
 
 <ExamLanding
 	level="B1"
