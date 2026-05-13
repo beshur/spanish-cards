@@ -25,7 +25,7 @@ export const a2ExamCategories: ExamCategory[] = [
 		id: 'tiempos-verbales',
 		title: 'Tiempos verbales',
 		icon: '⏱️',
-		description: 'Past tenses, future, and conditional patterns at A2 level.',
+		description: 'Past tenses, future, conditional and verbal periphrases at A2.',
 		topics: [
 			ref('a2-preterito-indefinido', 'Pretérito indefinido'),
 			ref('present-perfect', 'Pretérito perfecto'),
@@ -42,18 +42,18 @@ export const a2ExamCategories: ExamCategory[] = [
 		id: 'sintaxis',
 		title: 'Sintaxis y estructuras',
 		icon: '🧩',
-		description: 'Pronouns, ser/estar, comparatives, polite formulas.',
+		description: 'Pronouns, ser/estar, comparatives, indefinites, polite formulas.',
 		topics: [
 			ref('a2-ser-vs-estar', 'Ser vs Estar'),
 			ref('a2-estado-de-animo', 'Estar + estados de ánimo'),
 			ref('gustar-doler-caer', 'Gustar y verbos similares'),
 			ref('a2-me-gustaria', 'Me gustaría + infinitivo'),
 			ref('a2-pronombres-od-oi', 'Pronombres OD / OI'),
-			ref('a2-hay-que-se-puede', 'Hay que / Se puede'),
+			ref('a2-hay-que-se-puede', 'Hay que / (No) se puede'),
 			ref('se-impersonal', 'Se impersonal'),
 			ref('indefinidos', 'Indefinidos (alguien, nadie, algo, nada)'),
 			ref('comparativos-superlativos', 'Comparativos y superlativos'),
-			ref('preposiciones-esenciales', 'Preposiciones esenciales'),
+			ref('a2-pronombres-interrogativos', 'Pronombres interrogativos'),
 			ref('a2-numeros-fechas', 'Números y fechas')
 		]
 	},
@@ -61,10 +61,10 @@ export const a2ExamCategories: ExamCategory[] = [
 		id: 'modos-y-estilo',
 		title: 'Modos, imperativo y estilo indirecto',
 		icon: '🎭',
-		description: 'Imperative, basic subjunctive uses, reported speech.',
+		description: 'Imperative, basic subjunctive uses, reported speech, relative pronouns.',
 		topics: [
-			ref('imperativo', 'Imperativo'),
-			ref('subjuntivo', 'Presente de subjuntivo'),
+			ref('imperativo', 'Imperativo (+ pronombres)'),
+			ref('subjuntivo', 'Presente de subjuntivo (espero que…)'),
 			ref('oraciones-cuando', 'Cuando + indicativo / subjuntivo'),
 			ref('pronombres-relativos', 'Pronombres relativos (que, quien, donde)'),
 			ref('a2-estilo-indirecto-basico', 'Estilo indirecto')
@@ -74,18 +74,21 @@ export const a2ExamCategories: ExamCategory[] = [
 		id: 'vocabulario',
 		title: 'Vocabulario A2',
 		icon: '📚',
-		description: 'Daily life, home, character, food, biography, body, weather.',
+		description:
+			'Daily life, home, family, character, cooking, transport, work, biography, films, environment and useful objects — mapped to the A2 recap.',
 		topics: [
 			ref('a2-vocab-cotidiano', 'Actividades cotidianas'),
-			ref('a2-vocab-casa', 'La casa y los muebles'),
-			ref('a2-vocab-caracter', 'Adjetivos de carácter'),
-			ref('a2-vocab-cocina', 'Cocina y restaurante'),
 			ref('a2-vocab-biografia', 'Verbos para biografías'),
-			ref('vocab-cuerpo', 'Cuerpo y salud'),
-			ref('vocab-tiempo', 'Tiempo meteorológico'),
-			ref('vocab-ropa', 'Ropa'),
-			ref('vocab-profesiones', 'Profesiones'),
-			ref('vocab-alimentos', 'Alimentos')
+			ref('a2-vocab-familia', 'La familia'),
+			ref('a2-vocab-caracter', 'Adjetivos de carácter'),
+			ref('a2-vocab-casa', 'La casa y los muebles'),
+			ref('a2-vocab-peliculas', 'Tipos de películas'),
+			ref('a2-vocab-transporte', 'Transporte y expresiones de lugar'),
+			ref('a2-vocab-cocina', 'Cocina y restaurante'),
+			ref('a2-vocab-estado-cosas', 'Estado de las cosas'),
+			ref('a2-vocab-trabajo', 'Profesiones y trabajo'),
+			ref('a2-vocab-mundo', 'Planeta, política y opiniones'),
+			ref('a2-vocab-objetos', 'Objetos útiles')
 		]
 	}
 ];

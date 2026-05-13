@@ -63,6 +63,14 @@ import a2VocabCaracter from './a2-vocab-caracter';
 import a2VocabCocina from './a2-vocab-cocina';
 import a2CondicionalesReales from './a2-condicionales-reales';
 import a2VocabBiografia from './a2-vocab-biografia';
+import a2PronombresInterrogativos from './a2-pronombres-interrogativos';
+import a2VocabFamilia from './a2-vocab-familia';
+import a2VocabPeliculas from './a2-vocab-peliculas';
+import a2VocabTransporte from './a2-vocab-transporte';
+import a2VocabEstadoCosas from './a2-vocab-estado-cosas';
+import a2VocabTrabajo from './a2-vocab-trabajo';
+import a2VocabMundo from './a2-vocab-mundo';
+import a2VocabObjetos from './a2-vocab-objetos';
 
 /**
  * All available topics.
@@ -128,7 +136,15 @@ export const topics: Topic[] = [
 	a2VocabCaracter,
 	a2VocabCocina,
 	a2CondicionalesReales,
-	a2VocabBiografia
+	a2VocabBiografia,
+	a2PronombresInterrogativos,
+	a2VocabFamilia,
+	a2VocabPeliculas,
+	a2VocabTransporte,
+	a2VocabEstadoCosas,
+	a2VocabTrabajo,
+	a2VocabMundo,
+	a2VocabObjetos
 ];
 
 export function getTopicById(id: string): Topic | undefined {
