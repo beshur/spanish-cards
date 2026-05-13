@@ -8,7 +8,7 @@
 
 	const navLinks = [
 		{ href: `${base}/`, label: 'Practice' },
-		{ href: `${base}/exam`, label: 'B1 Exam' }
+		{ href: `${base}/exam`, label: 'Exam' }
 	];
 
 	function isActive(href: string, current: string): boolean {
@@ -63,6 +63,12 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+	}
+
+	@media (max-width: 767px) {
+		.shell {
+			min-height: 200vh;
+		}
 	}
 
 	.app-header {

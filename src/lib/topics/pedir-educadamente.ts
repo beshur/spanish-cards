@@ -19,7 +19,7 @@ const pedirEducadamente: Topic = {
 			answer: 'posible',
 			translation: 'Would it be possible to prepare my bill, please?',
 			verb: '—',
-			hint: 'sería ___ + infinitivo'
+			hint: 'adjetivo de posibilidad'
 		},
 		{
 			sentence: '¿___ tan amable de indicarme dónde hay un restaurante japonés?',

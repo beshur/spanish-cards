@@ -60,7 +60,7 @@ const vocabAlojamiento: Topic = {
 			answer: 'habitaciones',
 			translation: 'There is 24-hour room service.',
 			verb: '—',
-			hint: 'servicio de ___'
+			hint: '= room service (plural noun)'
 		},
 		{
 			sentence: 'Después de cenar tomamos un café en la ___ del hotel.',

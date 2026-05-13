@@ -11,6 +11,7 @@
 
 	let userAnswer = $state('');
 	let inputEl: HTMLInputElement | undefined = $state();
+	let cardEl: HTMLDivElement | undefined = $state();
 
 	// Rebuild state when card changes
 	let currentCardSentence = $derived(card.sentence);
@@ -21,7 +22,7 @@
 			userAnswer = '';
 			prevSentence = currentCardSentence;
 			// Focus the input when a new card is shown
-			setTimeout(() => inputEl?.focus(), 50);
+			setTimeout(() => inputEl?.focus({ preventScroll: true }), 50);
 		}
 	});
 
@@ -38,11 +39,25 @@
 		}
 	}
 
+	function handleFocus() {
+		// Only re-anchor on mobile: the virtual keyboard takes ~half the screen and the
+		// browser's default auto-scroll can hide the top of the sentence. On desktop,
+		// there's no keyboard and forcing a scroll is jarring.
+		if (window.innerWidth >= 768) return;
+		// Scroll to the sticky progress bar so it pins at top and the question card
+		// sits right below it. Wait for the keyboard to settle first or iOS's own
+		// scroll restoration fights ours.
+		setTimeout(() => {
+			const target = document.querySelector('.progress-container') ?? cardEl;
+			target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}, 300);
+	}
+
 	// Split the sentence around the blank
 	let parts = $derived(card.sentence.split('___'));
 </script>
 
-<div class="flash-card">
+<div class="flash-card" bind:this={cardEl}>
 	<div class="card-body">
 		<p class="sentence">
 			{#if parts.length >= 2}
@@ -52,6 +67,7 @@
 						bind:this={inputEl}
 						bind:value={userAnswer}
 						onkeydown={handleKeydown}
+						onfocus={handleFocus}
 						type="text"
 						class="answer-input"
 						placeholder="..."
@@ -103,6 +119,7 @@
 		max-width: 640px;
 		margin: 0 auto;
 		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+		scroll-margin-top: 4rem;
 	}
 
 	.card-body {

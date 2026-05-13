@@ -36,7 +36,12 @@
 <style>
 	.progress-container {
 		max-width: 640px;
-		margin: 0 auto 1.5rem auto;
+		margin: 0 auto;
+		padding: 0.5rem 0 1rem 0;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: var(--bg);
 	}
 
 	.progress-info {

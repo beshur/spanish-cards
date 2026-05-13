@@ -12,15 +12,52 @@
 
 	// Focus the next button
 	let nextBtn: HTMLButtonElement | undefined = $state();
+	let cardEl: HTMLDivElement | undefined = $state();
 
 	$effect(() => {
-		setTimeout(() => nextBtn?.focus(), 50);
+		// preventScroll: tall (incorrect) result cards otherwise scroll the page
+		// down to surface the button, pushing the result text off-screen.
+		setTimeout(() => nextBtn?.focus({ preventScroll: true }), 50);
+		// Mobile only: wait for the keyboard to fully close before anchoring — iOS
+		// otherwise restores its own scroll position and the card drifts up. On desktop
+		// there's no keyboard and forcing a scroll is jarring.
+		if (window.innerWidth >= 768) return;
+		setTimeout(() => {
+			const target = document.querySelector('.progress-container') ?? cardEl;
+			target?.scrollIntoView({ block: 'start' });
+		}, 350);
 	});
 
 	let fullSentence = $derived(card.sentence.replace('___', card.answer));
+
+	// Split user's answer and the correct answer into a common prefix, a differing
+	// middle, and a common suffix. Only worth highlighting when the words actually
+	// resemble each other — otherwise the alignment is noise.
+	let diff = $derived.by(() => {
+		const a = userAnswer;
+		const b = card.answer;
+		const minLen = Math.min(a.length, b.length);
+		let prefix = 0;
+		while (prefix < minLen && a[prefix] === b[prefix]) prefix++;
+		let suffix = 0;
+		while (
+			suffix < minLen - prefix &&
+			a[a.length - 1 - suffix] === b[b.length - 1 - suffix]
+		)
+			suffix++;
+		const shared = prefix + suffix;
+		const similar = shared / Math.max(a.length, b.length) >= 0.4;
+		return {
+			similar,
+			prefix: a.slice(0, prefix),
+			userMid: a.slice(prefix, a.length - suffix),
+			correctMid: b.slice(prefix, b.length - suffix),
+			suffix: a.slice(a.length - suffix)
+		};
+	});
 </script>
 
-<div class="result-card" class:correct={isCorrect} class:incorrect={!isCorrect}>
+<div class="result-card" class:correct={isCorrect} class:incorrect={!isCorrect} bind:this={cardEl}>
 	<div class="result-header">
 		{#if isCorrect}
 			<span class="result-icon">🎉</span>
@@ -38,11 +75,15 @@
 			<div class="comparison">
 				<div class="comparison-row">
 					<span class="label">Your answer:</span>
-					<span class="value wrong">{userAnswer}</span>
+					<span class="value wrong" class:diffed={diff.similar}
+						>{#if diff.similar}<span class="dim">{diff.prefix}</span><span class="diff-mark">{diff.userMid}</span><span class="dim">{diff.suffix}</span>{:else}{userAnswer}{/if}</span
+					>
 				</div>
 				<div class="comparison-row">
 					<span class="label">Correct:</span>
-					<span class="value right">{card.answer}</span>
+					<span class="value right" class:diffed={diff.similar}
+						>{#if diff.similar}<span class="dim">{diff.prefix}</span><span class="diff-mark">{diff.correctMid}</span><span class="dim">{diff.suffix}</span>{:else}{card.answer}{/if}</span
+					>
 				</div>
 			</div>
 		{/if}
@@ -73,6 +114,7 @@
 		margin: 0 auto;
 		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 		text-align: center;
+		scroll-margin-top: 4rem;
 	}
 
 	.result-card.correct {
@@ -161,6 +203,25 @@
 	.value.right {
 		color: var(--green);
 		background: var(--green-bg);
+	}
+
+	.value.diffed {
+		text-decoration: none;
+	}
+
+	.value.diffed .dim {
+		opacity: 0.45;
+	}
+
+	.value.wrong.diffed .diff-mark {
+		font-weight: 800;
+		text-decoration: line-through;
+		text-decoration-thickness: 2px;
+	}
+
+	.value.right.diffed .diff-mark {
+		font-weight: 800;
+		border-bottom: 2px solid currentColor;
 	}
 
 	.translation {

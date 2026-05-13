@@ -71,7 +71,7 @@ const oracionesCondicionales: Topic = {
 			hint: 'real — presente'
 		},
 		{
-			sentence: 'Si llama Ismael, dile que estoy enferma — Si ___ Ismael, dile… (llamar)',
+			sentence: 'Si ___ Ismael, dile que estoy enferma. (llamar)',
 			answer: 'llama',
 			translation: 'If Ismael calls, tell him I’m sick.',
 			verb: 'llamar',

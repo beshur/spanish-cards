@@ -46,6 +46,32 @@ import vocabAlojamiento from './vocab-alojamiento';
 import vocabTiempo from './vocab-tiempo';
 import vocabRopa from './vocab-ropa';
 
+// A2 exam-prep topics
+import a2PreteritoIndefinido from './a2-preterito-indefinido';
+import a2SerVsEstar from './a2-ser-vs-estar';
+import a2PronombresOdOi from './a2-pronombres-od-oi';
+import a2HayQueSePuede from './a2-hay-que-se-puede';
+import a2MeGustaria from './a2-me-gustaria';
+import a2NumerosFechas from './a2-numeros-fechas';
+import a2EstiloIndirectoBasico from './a2-estilo-indirecto-basico';
+import a2PretIndefVsPerfecto from './a2-pret-indef-vs-perfecto';
+import a2ImperfectoVsIndefinido from './a2-imperfecto-vs-indefinido';
+import a2EstadoDeAnimo from './a2-estado-de-animo';
+import a2VocabCotidiano from './a2-vocab-cotidiano';
+import a2VocabCasa from './a2-vocab-casa';
+import a2VocabCaracter from './a2-vocab-caracter';
+import a2VocabCocina from './a2-vocab-cocina';
+import a2CondicionalesReales from './a2-condicionales-reales';
+import a2VocabBiografia from './a2-vocab-biografia';
+import a2PronombresInterrogativos from './a2-pronombres-interrogativos';
+import a2VocabFamilia from './a2-vocab-familia';
+import a2VocabPeliculas from './a2-vocab-peliculas';
+import a2VocabTransporte from './a2-vocab-transporte';
+import a2VocabEstadoCosas from './a2-vocab-estado-cosas';
+import a2VocabTrabajo from './a2-vocab-trabajo';
+import a2VocabMundo from './a2-vocab-mundo';
+import a2VocabObjetos from './a2-vocab-objetos';
+
 /**
  * All available topics.
  * To add a new topic, create a new file in this folder and import it here.
@@ -94,7 +120,31 @@ export const topics: Topic[] = [
 	vocabDeportes,
 	vocabAlojamiento,
 	vocabTiempo,
-	vocabRopa
+	vocabRopa,
+	a2PreteritoIndefinido,
+	a2SerVsEstar,
+	a2PronombresOdOi,
+	a2HayQueSePuede,
+	a2MeGustaria,
+	a2NumerosFechas,
+	a2EstiloIndirectoBasico,
+	a2PretIndefVsPerfecto,
+	a2ImperfectoVsIndefinido,
+	a2EstadoDeAnimo,
+	a2VocabCotidiano,
+	a2VocabCasa,
+	a2VocabCaracter,
+	a2VocabCocina,
+	a2CondicionalesReales,
+	a2VocabBiografia,
+	a2PronombresInterrogativos,
+	a2VocabFamilia,
+	a2VocabPeliculas,
+	a2VocabTransporte,
+	a2VocabEstadoCosas,
+	a2VocabTrabajo,
+	a2VocabMundo,
+	a2VocabObjetos
 ];
 
 export function getTopicById(id: string): Topic | undefined {
